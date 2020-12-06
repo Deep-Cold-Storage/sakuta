@@ -4,9 +4,9 @@ from typing import Optional
 
 
 class BaseContact(BaseModel):
-    name: str
-    email: str
-    phone: str
+    name: Optional[str] = None
+    email: Optional[str] = None
+    phone: Optional[str] = None
     description: Optional[str] = None
 
 

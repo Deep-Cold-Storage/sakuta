@@ -19,6 +19,33 @@ def create_contact(db: Session, contractor_id: int, contact: contacts.Contact):
     return db_contact
 
 
+def update_contact(db: Session, contact: contacts.Contact, contact_id: int):
+    db_contact = db.query(models.Contact).filter(
+        models.Contact.contact_id == contact_id).first()
+
+    for key, value in contact.dict().items():
+        setattr(db_contact, key, value)
+
+    db.commit()
+    db.refresh(db_contact)
+
+    return db_contact
+
+
+def patch_contact(db: Session, contact: contacts.Contact, contact_id: int):
+    db_contact = db.query(models.Contact).filter(
+        models.Contact.contact_id == contact_id).first()
+
+    for key, value in contact.dict().items():
+        if value:
+            setattr(db_contact, key, value)
+
+    db.commit()
+    db.refresh(db_contact)
+
+    return db_contact
+
+
 def delete_contact(db: Session, contact_id: int):
     db_contact = db.query(models.Contact).filter(
         models.Contact.contact_id == contact_id).first()

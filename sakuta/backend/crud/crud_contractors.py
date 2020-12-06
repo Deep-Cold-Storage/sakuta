@@ -4,8 +4,8 @@ from .. import models
 from ..schemas import contractors
 
 
-def get_contractors(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(models.Contractor).offset(skip).limit(limit).all()
+def get_contractors(db: Session):
+    return db.query(models.Contractor).all()
 
 
 def create_contractor(db: Session, contractor: contractors.Contractor):
@@ -18,9 +18,26 @@ def create_contractor(db: Session, contractor: contractors.Contractor):
     return db_contractor
 
 
-def replace_contractor(db: Session, contractor: contractors.Contractor, contractor_id: int):
+def update_contractor(db: Session, contractor: contractors.Contractor, contractor_id: int):
     db_contractor = db.query(models.Contractor).filter(
-        models.Contractor.contractor_id == contractor_id).update(**contractor.dict())
+        models.Contractor.contractor_id == contractor_id).first()
+
+    for key, value in contractor.dict().items():
+        setattr(db_contractor, key, value)
+
+    db.commit()
+    db.refresh(db_contractor)
+
+    return db_contractor
+
+
+def patch_contractor(db: Session, contractor: contractors.Contractor, contractor_id: int):
+    db_contractor = db.query(models.Contractor).filter(
+        models.Contractor.contractor_id == contractor_id).first()
+
+    for key, value in contractor.dict().items():
+        if value:
+            setattr(db_contractor, key, value)
 
     db.commit()
     db.refresh(db_contractor)

@@ -4,7 +4,7 @@ from typing import Optional
 
 
 class BaseContractor(BaseModel):
-    name: str
+    name: Optional[str] = None
     industry: Optional[str] = None
     pesel: Optional[str] = None
     regon: Optional[str] = None

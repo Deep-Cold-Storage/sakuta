@@ -1,13 +1,14 @@
 # pylint: disable=no-name-in-module
 from pydantic import BaseModel
+from typing import Optional
 
 
 class BaseBranch(BaseModel):
-    name: str
-    address: str
-    postal_code: str
-    country: str
-    city: str
+    name: Optional[str] = None
+    address: Optional[str] = None
+    postal_code: Optional[str] = None
+    country: Optional[str] = None
+    city: Optional[str] = None
 
 
 class Branch(BaseBranch):
