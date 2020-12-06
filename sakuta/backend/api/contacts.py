@@ -30,9 +30,9 @@ def update_contact(contact_id: int, contact: contacts.BaseContact, db: Session =
 
 
 @router.patch("/contacts/{contact_id}", response_model=contacts.Contact, response_model_exclude_unset=True)
-def patch_branch(contact_id: int, contact: contacts.BaseContact, db: Session = Depends(get_db)):
+def patch_contact(contact_id: int, contact: contacts.BaseContact, db: Session = Depends(get_db)):
     try:
-        return crud_contacts.patch_branch(db=db, contact=contact, contact_id=contact_id)
+        return crud_contacts.patch_contact(db=db, contact=contact, contact_id=contact_id)
     except AttributeError:
         return Response(status_code=404)
 
