@@ -6,7 +6,7 @@
 ***
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-> 🔥 This is a placeholder README.md.
+> 🔥 This is a placeholder README.md This file will contain documentation in the future.
 
 <br>
 
