@@ -22,17 +22,17 @@ def create_contact(contractor_id: int, contact: contacts.BaseContact, db: Sessio
 
 
 @router.put("/contacts/{contact_id}", response_model=contacts.Contact, response_model_exclude_unset=True)
-def update_branch(contact_id: int, contacts: contacts.BaseContact, db: Session = Depends(get_db)):
+def update_contact(contact_id: int, contact: contacts.BaseContact, db: Session = Depends(get_db)):
     try:
-        return crud_contacts.update_branch(db=db, contacts=contacts, contact_id=contact_id)
+        return crud_contacts.update_contact(db=db, contact=contact, contact_id=contact_id)
     except AttributeError:
         return Response(status_code=404)
 
 
 @router.patch("/contacts/{contact_id}", response_model=contacts.Contact, response_model_exclude_unset=True)
-def patch_branch(contact_id: int, contacts: contacts.BaseContact, db: Session = Depends(get_db)):
+def patch_branch(contact_id: int, contact: contacts.BaseContact, db: Session = Depends(get_db)):
     try:
-        return crud_contacts.patch_branch(db=db, contacts=contacts, contact_id=contact_id)
+        return crud_contacts.patch_branch(db=db, contact=contact, contact_id=contact_id)
     except AttributeError:
         return Response(status_code=404)
 
