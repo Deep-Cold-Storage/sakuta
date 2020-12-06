@@ -11,12 +11,12 @@ from ..schemas import branches
 router = APIRouter()
 
 
-@router.get("/contractors/{contractor_id}/branches/", response_model=List[branches.Branch])
+@router.get("/contractors/{contractor_id}/branches/", response_model=List[branches.Branch], response_model_exclude_unset=True)
 def get_branches(contractor_id: int, db: Session = Depends(get_db)):
     return crud_branches.get_branches(db=db, contractor_id=contractor_id)
 
 
-@router.post("/contractors/{contractor_id}/branches/", response_model=branches.Branch)
+@router.post("/contractors/{contractor_id}/branches/", response_model=branches.Branch, response_model_exclude_unset=True)
 def create_branch(contractor_id: int, branch: branches.BaseBranch, db: Session = Depends(get_db)):
     try:
         return crud_branches.create_branch(db=db, branch=branch, contractor_id=contractor_id)
@@ -24,7 +24,7 @@ def create_branch(contractor_id: int, branch: branches.BaseBranch, db: Session =
         return Response(status_code=400)
 
 
-@router.put("/branches/{branch_id}")
+@router.put("/branches/{branch_id}", response_model=branches.Branch, response_model_exclude_unset=True)
 def update_branch(branch_id: int, branch: branches.BaseBranch, db: Session = Depends(get_db)):
     try:
         return crud_branches.update_branch(db=db, branch=branch, branch_id=branch_id)
@@ -32,7 +32,7 @@ def update_branch(branch_id: int, branch: branches.BaseBranch, db: Session = Dep
         return Response(status_code=404)
 
 
-@router.patch("/branches/{branch_id}")
+@router.patch("/branches/{branch_id}", response_model=branches.Branch, response_model_exclude_unset=True)
 def patch_branch(branch_id: int, branch: branches.BaseBranch, db: Session = Depends(get_db)):
     try:
         return crud_branches.patch_branch(db=db, branch=branch, branch_id=branch_id)

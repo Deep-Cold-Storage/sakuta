@@ -11,17 +11,17 @@ from ..schemas import contractors
 router = APIRouter()
 
 
-@router.get("/contractors/", response_model=List[contractors.Contractor])
+@router.get("/contractors/", response_model=List[contractors.Contractor], response_model_exclude_unset=True)
 def get_contractors(db: Session = Depends(get_db)):
     return crud_contractors.get_contractors(db)
 
 
-@router.post("/contractors/", response_model=contractors.Contractor)
+@router.post("/contractors/", response_model=contractors.Contractor, response_model_exclude_unset=True)
 def create_contractor(contractor: contractors.BaseContractor, db: Session = Depends(get_db)):
     return crud_contractors.create_contractor(db=db, contractor=contractor)
 
 
-@router.put("/contractors/{contractor_id}", response_model=contractors.Contractor)
+@router.put("/contractors/{contractor_id}", response_model=contractors.Contractor, response_model_exclude_unset=True)
 def update_contractor(contractor_id: int, contractor: contractors.BaseContractor, db: Session = Depends(get_db)):
     try:
         return crud_contractors.update_contractor(db=db, contractor=contractor, contractor_id=contractor_id)
@@ -29,7 +29,7 @@ def update_contractor(contractor_id: int, contractor: contractors.BaseContractor
         return Response(status_code=404)
 
 
-@router.patch("/contractors/{contractor_id}", response_model=contractors.Contractor)
+@router.patch("/contractors/{contractor_id}", response_model=contractors.Contractor, response_model_exclude_unset=True)
 def patch_contractor(contractor_id: int, contractor: contractors.BaseContractor, db: Session = Depends(get_db)):
     try:
         return crud_contractors.patch_contractor(db=db, contractor=contractor, contractor_id=contractor_id)
