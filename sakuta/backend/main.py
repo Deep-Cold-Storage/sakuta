@@ -15,15 +15,15 @@ tags_metadata = [
     },
     {
         "name": "Branches",
-        "description": "Operations with Branches for existing contractors. Create, edit, and delete branches.",
+        "description": "Operations with Branches for **existing** contractors. Create, edit, and delete branches.",
     },
     {
         "name": "Contacts",
-        "description": "Operations with Contacts for existing contractors. Create, edit, and delete contacts.",
+        "description": "Operations with Contacts for **existing** contractors. Create, edit, and delete contacts.",
     },
     {
         "name": "Relations",
-        "description": "Operations with Relations for existing branches and contacts. Create and delete relations between **existing** contacts and branches.",
+        "description": "Operations with Relations for **existing** branches and contacts. Create and delete relations between **existing** contacts and branches.",
     }
 ]
 

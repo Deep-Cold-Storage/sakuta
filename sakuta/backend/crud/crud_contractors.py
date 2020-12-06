@@ -8,6 +8,10 @@ def get_contractors(db: Session):
     return db.query(models.Contractor).all()
 
 
+def get_contractor(db: Session, contractor_id: int):
+    return db.query(models.Contractor).filter(models.Contractor.contractor_id == contractor_id).first()
+
+
 def create_contractor(db: Session, contractor: contractors.Contractor):
     db_contractor = models.Contractor(**contractor.dict())
 

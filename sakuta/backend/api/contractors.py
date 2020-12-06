@@ -13,7 +13,18 @@ router = APIRouter()
 
 @router.get("/contractors/", response_model=List[contractors.Contractor], response_model_exclude_unset=True)
 def get_contractors(db: Session = Depends(get_db)):
-    return crud_contractors.get_contractors(db)
+    return crud_contractors.get_contractors(db=db)
+
+
+@router.get("/contractors/{contractor_id}", response_model=contractors.Contractor, response_model_exclude_unset=True)
+def get_contractor(contractor_id: int, db: Session = Depends(get_db)):
+    contactor = crud_contractors.get_contractor(
+        db=db, contractor_id=contractor_id)
+
+    if not contactor:
+        return Response(status_code=404)
+
+    return contactor
 
 
 @router.post("/contractors/", response_model=contractors.Contractor, response_model_exclude_unset=True)
