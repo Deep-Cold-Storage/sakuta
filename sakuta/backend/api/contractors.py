@@ -11,15 +11,14 @@ from ..schemas import contractors
 router = APIRouter()
 
 
-@router.get("/contractors/", response_model=List[contractors.Contractor], response_model_exclude_unset=True)
-def get_contractors(db: Session = Depends(get_db)):
-    return crud_contractors.get_contractors(db=db)
+@router.get("/contractors/", response_model=List[contractors.Contractor], summary="Get all saved Contractors.")
+def get_contractors(db=Depends(get_db)):
+    return crud_contractors.get_contractors(db)
 
 
-@router.get("/contractors/{contractor_id}", response_model=contractors.Contractor, response_model_exclude_unset=True)
-def get_contractor(contractor_id: int, db: Session = Depends(get_db)):
-    contactor = crud_contractors.get_contractor(
-        db=db, contractor_id=contractor_id)
+@router.get("/contractors/{contractor_id}", response_model=contractors.Contractor, summary="Get Contractor by ID.")
+def get_contractor(contractor_id: int, db=Depends(get_db)):
+    contactor = crud_contractors.get_contractor(db=db, contractor_id=contractor_id)
 
     if not contactor:
         return Response(status_code=404)
@@ -27,29 +26,29 @@ def get_contractor(contractor_id: int, db: Session = Depends(get_db)):
     return contactor
 
 
-@router.post("/contractors/", response_model=contractors.Contractor, response_model_exclude_unset=True)
-def create_contractor(contractor: contractors.BaseContractor, db: Session = Depends(get_db)):
+@router.post("/contractors/", response_model=contractors.Contractor, summary="Create a new Contractor.")
+def create_contractor(contractor: contractors.BaseContractor, db=Depends(get_db)):
     return crud_contractors.create_contractor(db=db, contractor=contractor)
 
 
-@router.put("/contractors/{contractor_id}", response_model=contractors.Contractor, response_model_exclude_unset=True)
-def update_contractor(contractor_id: int, contractor: contractors.BaseContractor, db: Session = Depends(get_db)):
+@router.put("/contractors/{contractor_id}", response_model=contractors.Contractor, summary="Replace existing Contractor by ID.")
+def update_contractor(contractor_id: int, contractor: contractors.BaseContractor, db=Depends(get_db)):
     try:
         return crud_contractors.update_contractor(db=db, contractor=contractor, contractor_id=contractor_id)
     except AttributeError:
         return Response(status_code=404)
 
 
-@router.patch("/contractors/{contractor_id}", response_model=contractors.Contractor, response_model_exclude_unset=True)
-def patch_contractor(contractor_id: int, contractor: contractors.BaseContractor, db: Session = Depends(get_db)):
+@router.patch("/contractors/{contractor_id}", response_model=contractors.Contractor, summary="Partially update Contractor by ID.")
+def patch_contractor(contractor_id: int, contractor: contractors.BaseContractor, db=Depends(get_db)):
     try:
         return crud_contractors.patch_contractor(db=db, contractor=contractor, contractor_id=contractor_id)
     except AttributeError:
         return Response(status_code=404)
 
 
-@router.delete("/contractors/{contractor_id}")
-def delete_contractor(contractor_id: int, db: Session = Depends(get_db)):
+@router.delete("/contractors/{contractor_id}", summary="Delete Contractor by ID.")
+def delete_contractor(contractor_id: int, db=Depends(get_db)):
     crud_contractors.delete_contractor(db=db, contractor_id=contractor_id)
 
     return Response(status_code=204)

@@ -11,13 +11,13 @@ from ..schemas import relations
 router = APIRouter()
 
 
-@router.get("/branches/{branch_id}/relations/", response_model=List[relations.Relation], response_model_exclude_unset=True)
-def get_relations(branch_id: int, db: Session = Depends(get_db)):
+@router.get("/branches/{branch_id}/relations/", response_model=List[relations.Relation])
+def get_relations(branch_id: int, db=Depends(get_db)):
     return crud_relations.get_relations(db=db, branch_id=branch_id)
 
 
-@router.post("/branches/{branch_id}/relations/", response_model=relations.Relation, response_model_exclude_unset=True)
-def create_relation(branch_id: int, relation: relations.BaseRelation, db: Session = Depends(get_db)):
+@router.post("/branches/{branch_id}/relations/", response_model=relations.Relation)
+def create_relation(branch_id: int, relation: relations.BaseRelation, db=Depends(get_db)):
     try:
         return crud_relations.create_relation(db=db, relation=relation, branch_id=branch_id)
     except:
@@ -25,7 +25,7 @@ def create_relation(branch_id: int, relation: relations.BaseRelation, db: Sessio
 
 
 @router.delete("/relation/{relation_id}")
-def delete_relation(relation_id: int, db: Session = Depends(get_db)):
+def delete_relation(relation_id: int, db=Depends(get_db)):
     crud_relations.delete_relation(db=db, relation_id=relation_id)
 
     return Response(status_code=204)

@@ -11,26 +11,26 @@ from ..schemas import contacts
 router = APIRouter()
 
 
-@router.get("/contractors/{contractor_id}/contacts/", response_model=List[contacts.Contact], response_model_exclude_unset=True)
-def get_contacts(contractor_id: int, db: Session = Depends(get_db)):
+@router.get("/contractors/{contractor_id}/contacts/", response_model=List[contacts.Contact])
+def get_contacts(contractor_id: int, db=Depends(get_db)):
     return crud_contacts.get_contacts(db=db, contractor_id=contractor_id)
 
 
-@router.post("/contractors/{contractor_id}/contacts/", response_model=contacts.Contact, response_model_exclude_unset=True)
-def create_contact(contractor_id: int, contact: contacts.BaseContact, db: Session = Depends(get_db)):
+@router.post("/contractors/{contractor_id}/contacts/", response_model=contacts.Contact)
+def create_contact(contractor_id: int, contact: contacts.BaseContact, db=Depends(get_db)):
     return crud_contacts.create_contact(db=db, contractor_id=contractor_id, contact=contact)
 
 
-@router.put("/contacts/{contact_id}", response_model=contacts.Contact, response_model_exclude_unset=True)
-def update_contact(contact_id: int, contact: contacts.BaseContact, db: Session = Depends(get_db)):
+@router.put("/contacts/{contact_id}", response_model=contacts.Contact)
+def update_contact(contact_id: int, contact: contacts.BaseContact, db=Depends(get_db)):
     try:
         return crud_contacts.update_contact(db=db, contact=contact, contact_id=contact_id)
     except AttributeError:
         return Response(status_code=404)
 
 
-@router.patch("/contacts/{contact_id}", response_model=contacts.Contact, response_model_exclude_unset=True)
-def patch_contact(contact_id: int, contact: contacts.BaseContact, db: Session = Depends(get_db)):
+@router.patch("/contacts/{contact_id}", response_model=contacts.Contact)
+def patch_contact(contact_id: int, contact: contacts.BaseContact, db=Depends(get_db)):
     try:
         return crud_contacts.patch_contact(db=db, contact=contact, contact_id=contact_id)
     except AttributeError:
@@ -38,7 +38,7 @@ def patch_contact(contact_id: int, contact: contacts.BaseContact, db: Session = 
 
 
 @router.delete("/contacts/{contact_id}")
-def delete_contact(contact_id: int, db: Session = Depends(get_db)):
+def delete_contact(contact_id: int, db=Depends(get_db)):
     crud_contacts.delete_contact(db=db, contact_id=contact_id)
 
     return Response(status_code=204)
