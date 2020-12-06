@@ -2,10 +2,13 @@
 from pydantic import BaseModel
 
 
-class Relation(BaseModel):
-    relation_id: int
+class BaseRelation(BaseModel):
     contact_id: int
-    branch_id: int
 
     class Config:
         orm_mode = True
+
+
+class Relation(BaseRelation):
+    relation_id: int
+    branch_id: int

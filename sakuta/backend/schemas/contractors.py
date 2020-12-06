@@ -4,15 +4,26 @@ from typing import Optional
 
 
 class BaseContractor(BaseModel):
-    name: Optional[str] = None
-    industry: Optional[str] = None
-    pesel: Optional[str] = None
-    regon: Optional[str] = None
-    nip: Optional[str] = None
-    bank_account: Optional[str] = None
-    bank_name: Optional[str] = None
-    website: Optional[str] = None
-    description: Optional[str] = None
+    name: Optional[str]
+    industry: Optional[str]
+    pesel: Optional[str]
+    regon: Optional[str]
+    nip: Optional[str]
+    bank_account: Optional[str]
+    bank_name: Optional[str]
+    website: Optional[str]
+    description: Optional[str]
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "name": "Mickiewicz Inc.",
+                "industry": "Artist",
+                "nip": "6690506570",
+                "website": "https://bednarski.dev",
+                "description": "Very good deliverability! 8/10"
+            }
+        }
 
 
 class Contractor(BaseContractor):

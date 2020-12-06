@@ -10,7 +10,7 @@ def get_contacts(contractor_id: int, db: Session, skip: int = 0, limit: int = 10
 
 def create_contact(db: Session, contractor_id: int, contact: contacts.Contact):
     db_contact = models.Contact(**contact.dict())
-    db.contact.contractor_id = contractor_id
+    db_contact.contractor_id = contractor_id
 
     db.add(db_contact)
     db.commit()

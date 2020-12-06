@@ -18,7 +18,10 @@ class Contractor(Base):
     website = Column(String)
     description = Column(String)
 
-    
+    branches = relationship("Branch", cascade="all, delete")
+    contacts = relationship("Contact", cascade="all, delete")
+
+
 class Contact(Base):
     __tablename__ = "contacts"
 
@@ -29,6 +32,8 @@ class Contact(Base):
     email = Column(String)
     phone = Column(String)
     description = Column(String)
+
+    relations = relationship("Relation", cascade="all, delete")
 
 
 class Branch(Base):
@@ -43,10 +48,13 @@ class Branch(Base):
     country = Column(String)
     city = Column(String)
 
+    relations = relationship("Relation", cascade="all, delete")
+
 
 class Relation(Base):
     __tablename__ = "relations"
 
-    relations_id = Column(Integer, primary_key=True, index=True)
+    relation_id = Column(Integer, primary_key=True,
+                         index=True, autoincrement=True)
     contact_id = Column(Integer, ForeignKey("contacts.contact_id"))
     branch_id = Column(Integer, ForeignKey("branches.branch_id"))

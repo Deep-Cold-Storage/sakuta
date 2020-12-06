@@ -4,11 +4,22 @@ from typing import Optional
 
 
 class BaseBranch(BaseModel):
-    name: Optional[str] = None
-    address: Optional[str] = None
-    postal_code: Optional[str] = None
-    country: Optional[str] = None
-    city: Optional[str] = None
+    name: Optional[str]
+    address: Optional[str]
+    postal_code: Optional[str]
+    country: Optional[str]
+    city: Optional[str]
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "name": "Artistry - Rzeszów Branch",
+                "address": "Podkarpacka 5/2",
+                "postal_code": "37-700",
+                "country": "PL",
+                "city": "Rzeszów"
+            }
+        }
 
 
 class Branch(BaseBranch):

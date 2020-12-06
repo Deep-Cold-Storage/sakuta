@@ -4,10 +4,19 @@ from typing import Optional
 
 
 class BaseContact(BaseModel):
-    name: Optional[str] = None
-    email: Optional[str] = None
-    phone: Optional[str] = None
-    description: Optional[str] = None
+    name: Optional[str]
+    email: Optional[str]
+    phone: Optional[str]
+    description: Optional[str]
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "name": "Adam Mickiewicz",
+                "email": "adam@bednarski.dev",
+                "description": "A very funny guy!"
+            }
+        }
 
 
 class Contact(BaseContact):
