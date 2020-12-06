@@ -7,6 +7,7 @@ from .api import contractors, branches, contacts, relations
 
 models.Base.metadata.create_all(bind=engine)
 
+
 tags_metadata = [
     {
         "name": "Contractors",
@@ -14,15 +15,15 @@ tags_metadata = [
     },
     {
         "name": "Branches",
-        "description": "Manage items. So _fancy_ they have their own docs.",
+        "description": "Operations with Branches for existing contractors. Create, edit, and delete branches.",
     },
     {
         "name": "Contacts",
-        "description": "Manage items. So _fancy_ they have their own docs.",
+        "description": "Operations with Contacts for existing contractors. Create, edit, and delete contacts.",
     },
     {
         "name": "Relations",
-        "description": "Manage items. So _fancy_ they have their own docs.",
+        "description": "Operations with Relations for existing branches and contacts. Create and delete relations between **existing** contacts and branches.",
     }
 ]
 
