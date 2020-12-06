@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
 from .. import models
-from ..schemas import schema_branches
+from ..schemas import branches
 
 
 def get_branches(contractor_id: int, db: Session, skip: int = 0, limit: int = 100):
@@ -9,7 +9,7 @@ def get_branches(contractor_id: int, db: Session, skip: int = 0, limit: int = 10
     return db.query(models.Branch).filter(models.Branch.contractor_id == contractor_id).offset(skip).limit(limit).all()
 
 
-def create_branch(db: Session, branch: schema_branches.Branch, contractor_id: int):
+def create_branch(db: Session, branch: branches.Branch, contractor_id: int):
     db_branch = models.Branch(**branch.dict())
     db_branch.contractor_id = contractor_id
 

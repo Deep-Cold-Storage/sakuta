@@ -1,14 +1,14 @@
 from sqlalchemy.orm import Session
 
 from .. import models
-from ..schemas import schema_contractors
+from ..schemas import contractors
 
 
 def get_contractors(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.Contractor).offset(skip).limit(limit).all()
 
 
-def create_contractor(db: Session, contractor: schema_contractors.Contractor):
+def create_contractor(db: Session, contractor: contractors.Contractor):
     db_contractor = models.Contractor(**contractor.dict())
 
     db.add(db_contractor)
@@ -18,7 +18,7 @@ def create_contractor(db: Session, contractor: schema_contractors.Contractor):
     return db_contractor
 
 
-def replace_contractor(db: Session, contractor: schema_contractors.Contractor, contractor_id: int):
+def replace_contractor(db: Session, contractor: contractors.Contractor, contractor_id: int):
     db_contractor = db.query(models.Contractor).filter(
         models.Contractor.contractor_id == contractor_id).update(**contractor.dict())
 

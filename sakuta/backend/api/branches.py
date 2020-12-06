@@ -6,18 +6,18 @@ from ..database import get_db
 
 from .. import models
 from ..crud import crud_branches
-from ..schemas import schema_branches
+from ..schemas import branches
 
 router = APIRouter()
 
 
-@router.get("/contractors/{contractor_id}/branches/", response_model=List[schema_branches.Branch])
+@router.get("/contractors/{contractor_id}/branches/", response_model=List[branches.Branch])
 def read_branches(contractor_id: int, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     return crud_branches.get_branches(db=db, contractor_id=contractor_id, skip=skip, limit=limit, )
 
 
-@router.post("/contractors/{contractor_id}/branches/", response_model=schema_branches.Branch)
-def create_branch(contractor_id: int, branch: schema_branches.BaseBranch, db: Session = Depends(get_db)):
+@router.post("/contractors/{contractor_id}/branches/", response_model=branches.Branch)
+def create_branch(contractor_id: int, branch: branches.BaseBranch, db: Session = Depends(get_db)):
     try:
         return crud_branches.create_branch(db=db, branch=branch, contractor_id=contractor_id)
     except:

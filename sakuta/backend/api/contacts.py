@@ -6,18 +6,18 @@ from ..database import get_db
 
 from .. import models
 from ..crud import crud_contacts
-from ..schemas import schema_contacts
+from ..schemas import contacts
 
 router = APIRouter()
 
 
-@router.get("/contractors/{contractor_id}/contacts/", response_model=List[schema_contacts.Contact])
+@router.get("/contractors/{contractor_id}/contacts/", response_model=List[contacts.Contact])
 def read_contacts(contractor_id: int, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     return crud_contacts.get_contacts(db=db, contractor_id=contractor_id, skip=skip, limit=limit)
 
 
-@router.post("/contractors/{contractor_id}/contacts/", response_model=schema_contacts.Contact)
-def create_contact(contractor_id: int, contact: schema_contacts.BaseContact, db: Session = Depends(get_db)):
+@router.post("/contractors/{contractor_id}/contacts/", response_model=contacts.Contact)
+def create_contact(contractor_id: int, contact: contacts.BaseContact, db: Session = Depends(get_db)):
     return crud_contacts.create_contact(db=db, contractor_id=contractor_id, contact=contact)
 
 
