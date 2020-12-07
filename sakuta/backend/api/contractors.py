@@ -47,7 +47,7 @@ def patch_contractor(contractor_id: int, contractor: contractors.BaseContractor,
         return Response(status_code=404)
 
 
-@router.delete("/contractors/{contractor_id}", summary="Delete Contractor by ID.")
+@router.delete("/contractors/{contractor_id}", status_code=204, summary="Delete Contractor by ID.")
 def delete_contractor(contractor_id: int, db=Depends(get_db)):
     crud_contractors.delete_contractor(db=db, contractor_id=contractor_id)
 

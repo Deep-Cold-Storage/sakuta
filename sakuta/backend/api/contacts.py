@@ -37,7 +37,7 @@ def patch_contact(contact_id: int, contact: contacts.BaseContact, db=Depends(get
         return Response(status_code=404)
 
 
-@router.delete("/contacts/{contact_id}", summary="Delete Contact by ID.")
+@router.delete("/contacts/{contact_id}", status_code=204, summary="Delete Contact by ID.")
 def delete_contact(contact_id: int, db=Depends(get_db)):
     crud_contacts.delete_contact(db=db, contact_id=contact_id)
 

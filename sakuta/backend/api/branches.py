@@ -40,7 +40,7 @@ def patch_branch(branch_id: int, branch: branches.BaseBranch, db=Depends(get_db)
         return Response(status_code=404)
 
 
-@router.delete("/branches/{branch_id}", summary="Delete Branch by ID.")
+@router.delete("/branches/{branch_id}", status_code=204, summary="Delete Branch by ID.")
 def delete_branch(branch_id: int, db=Depends(get_db)):
     crud_branches.delete_branch(db=db, branch_id=branch_id)
 

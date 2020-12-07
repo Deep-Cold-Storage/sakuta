@@ -24,7 +24,7 @@ def create_relation(branch_id: int, relation: relations.BaseRelation, db=Depends
         return Response(status_code=400)
 
 
-@router.delete("/relation/{relation_id}", summary="Delete Relation by ID.")
+@router.delete("/relation/{relation_id}", status_code=204, summary="Delete Relation by ID.")
 def delete_relation(relation_id: int, db=Depends(get_db)):
     crud_relations.delete_relation(db=db, relation_id=relation_id)
 
