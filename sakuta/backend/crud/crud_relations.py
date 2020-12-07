@@ -12,6 +12,13 @@ def create_relation(db: Session, branch_id: int, relation: relations.Relation):
     db_relations = models.Relation(**relation.dict())
     db_relations.branch_id = branch_id
 
+    # QUICK FIX! Check if used contact is assigned to the same contractor as a used branch, if not raise Exception.
+    db_branch = db.query(models.Branch).filter(models.Branch.branch_id == branch_id).first()
+    db_contact = db.query(models.Contact).filter(models.Contact.contact_id == relation.contact_id).first()
+
+    if db_branch.contractor_id != db_contact.contractor_id:
+        raise Exception
+
     db.add(db_relations)
     db.commit()
     db.refresh(db_relations)
