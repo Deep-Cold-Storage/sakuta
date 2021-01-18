@@ -24,6 +24,14 @@ def create_branch(contractor_id: int, branch: branches.BaseBranch, db=Depends(ge
         return Response(status_code=400)
 
 
+@router.get("/branches/{branch_id}", response_model=branches.Branch, summary="Get existing Branch by ID.")
+def get_branch(branch_id: int, db=Depends(get_db)):
+    try:
+        return crud_branches.get_branch(db=db, branch_id=branch_id)
+    except AttributeError:
+        return Response(status_code=404)
+
+
 @router.put("/branches/{branch_id}", response_model=branches.Branch, summary="Replace existing Branch by ID.")
 def update_branch(branch_id: int, branch: branches.BaseBranch, db=Depends(get_db)):
     try:

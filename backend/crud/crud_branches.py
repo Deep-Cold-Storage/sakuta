@@ -8,6 +8,10 @@ def get_branches(contractor_id: int, db: Session):
     return db.query(models.Branch).filter(models.Branch.contractor_id == contractor_id).all()
 
 
+def get_branch(branch_id: int, db: Session):
+    return db.query(models.Branch).filter(models.Branch.branch_id == branch_id).first()
+
+
 def create_branch(db: Session, branch: branches.Branch, contractor_id: int):
     db_branch = models.Branch(**branch.dict())
     db_branch.contractor_id = contractor_id
