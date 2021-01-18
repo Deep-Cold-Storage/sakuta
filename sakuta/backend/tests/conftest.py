@@ -22,3 +22,40 @@ def client():
 
     client = TestClient(app)
     return client
+
+
+# Create a new contractor, Returns ID
+@pytest.fixture()
+def contractor(client):
+    json = {
+        "name": "Black Mesa",
+        "industry": "Science",
+    }
+
+    response = client.post("/contractors", json=json)
+    return response.json()["contractor_id"]
+
+
+# Create a new branch, Returns Object
+@pytest.fixture()
+def branch(client, contractor):
+    json = {
+        "name": "Test Branch",
+        "address": "Podkarpacka 3",
+        "country": "PL",
+    }
+
+    response = client.post(f"/contractors/{contractor}/branches", json=json)
+    return response.json()
+
+
+# Create a new contact, Returns Object
+@pytest.fixture()
+def contact(client, contractor):
+    json = {
+        "name": "Adam Mickiewicz",
+        "email": "adam@bednarski.dev",
+    }
+
+    response = client.post(f"/contractors/{contractor}/contacts", json=json)
+    return response.json()
