@@ -12,4 +12,4 @@ ADD / /backend
 EXPOSE 8000
 
 # Run app server.
-CMD uvicorn backend.main:app
+CMD uvicorn --host 0.0.0.0 --port 8000 backend.main:app
