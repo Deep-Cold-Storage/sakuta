@@ -21,6 +21,16 @@ def create_contact(contractor_id: int, contact: contacts.BaseContact, db=Depends
     return crud_contacts.create_contact(db=db, contractor_id=contractor_id, contact=contact)
 
 
+@router.get("/contacts/{contact_id}", response_model=contacts.Contact,  summary="Get existing Contact by ID.")
+def get_contact(contact_id: int, db=Depends(get_db)):
+    contact = crud_contacts.get_contact(db=db, contact_id=contact_id)
+
+    if contact is None:
+        return Response(status_code=404)
+
+    return contact
+
+
 @router.put("/contacts/{contact_id}", response_model=contacts.Contact, summary="Replace existing Contact by ID.")
 def update_contact(contact_id: int, contact: contacts.BaseContact, db=Depends(get_db)):
     try:

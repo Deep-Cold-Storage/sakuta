@@ -8,6 +8,10 @@ def get_contacts(contractor_id: int, db: Session, skip: int = 0, limit: int = 10
     return db.query(models.Contact).filter(models.Contact.contractor_id == contractor_id).offset(skip).limit(limit).all()
 
 
+def get_contact(contact_id: int, db: Session):
+    return db.query(models.Contact).filter(models.Contact.contact_id == contact_id).first()
+
+
 def create_contact(db: Session, contractor_id: int, contact: contacts.Contact):
     db_contact = models.Contact(**contact.dict())
     db_contact.contractor_id = contractor_id
