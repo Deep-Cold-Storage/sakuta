@@ -7,7 +7,7 @@ ADD requirements.txt /requirements.txt
 RUN pip3 install -r requirements.txt
 
 # Copy files.
-ADD ../backend /
+ADD / /backend
 
 EXPOSE 8000
 
