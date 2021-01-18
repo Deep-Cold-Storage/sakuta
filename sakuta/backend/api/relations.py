@@ -11,12 +11,12 @@ from ..schemas import relations
 router = APIRouter()
 
 
-@router.get("/branches/{branch_id}/relations/", response_model=List[relations.Relation], summary="Get all Relations between this Branch and saved Contacts.")
+@router.get("/branches/{branch_id}/relations", response_model=List[relations.Relation], summary="Get all Relations between this Branch and saved Contacts.")
 def get_relations(branch_id: int, db=Depends(get_db)):
     return crud_relations.get_relations(db=db, branch_id=branch_id)
 
 
-@router.post("/branches/{branch_id}/relations/", response_model=relations.Relation, summary="Create a new Relation between this Branch to Contact.")
+@router.post("/branches/{branch_id}/relations", response_model=relations.Relation, summary="Create a new Relation between this Branch to Contact.")
 def create_relation(branch_id: int, relation: relations.BaseRelation, db=Depends(get_db)):
     try:
         return crud_relations.create_relation(db=db, relation=relation, branch_id=branch_id)

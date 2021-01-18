@@ -11,7 +11,7 @@ from ..schemas import contractors
 router = APIRouter()
 
 
-@router.get("/contractors/", response_model=List[contractors.Contractor], summary="Get all saved Contractors.")
+@router.get("/contractors", response_model=List[contractors.Contractor], summary="Get all saved Contractors.")
 def get_contractors(db=Depends(get_db)):
     return crud_contractors.get_contractors(db)
 
@@ -26,7 +26,7 @@ def get_contractor(contractor_id: int, db=Depends(get_db)):
     return contactor
 
 
-@router.post("/contractors/", response_model=contractors.Contractor, summary="Create a new Contractor.")
+@router.post("/contractors", response_model=contractors.Contractor, summary="Create a new Contractor.")
 def create_contractor(contractor: contractors.BaseContractor, db=Depends(get_db)):
     return crud_contractors.create_contractor(db=db, contractor=contractor)
 

@@ -11,12 +11,12 @@ from ..schemas import branches
 router = APIRouter()
 
 
-@router.get("/contractors/{contractor_id}/branches/", response_model=List[branches.Branch], summary="Get all saved Branches for this Contractor.")
+@router.get("/contractors/{contractor_id}/branches", response_model=List[branches.Branch], summary="Get all saved Branches for this Contractor.")
 def get_branches(contractor_id: int, db=Depends(get_db)):
     return crud_branches.get_branches(db=db, contractor_id=contractor_id)
 
 
-@router.post("/contractors/{contractor_id}/branches/", response_model=branches.Branch, summary="Create a new Branch for this Contractor.")
+@router.post("/contractors/{contractor_id}/branches", response_model=branches.Branch, summary="Create a new Branch for this Contractor.")
 def create_branch(contractor_id: int, branch: branches.BaseBranch, db=Depends(get_db)):
     try:
         return crud_branches.create_branch(db=db, branch=branch, contractor_id=contractor_id)

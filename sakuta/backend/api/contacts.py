@@ -11,12 +11,12 @@ from ..schemas import contacts
 router = APIRouter()
 
 
-@router.get("/contractors/{contractor_id}/contacts/", response_model=List[contacts.Contact],  summary="Get all saved Contacts for this Contractor.")
+@router.get("/contractors/{contractor_id}/contacts", response_model=List[contacts.Contact],  summary="Get all saved Contacts for this Contractor.")
 def get_contacts(contractor_id: int, db=Depends(get_db)):
     return crud_contacts.get_contacts(db=db, contractor_id=contractor_id)
 
 
-@router.post("/contractors/{contractor_id}/contacts/", response_model=contacts.Contact, summary="Create a new Contact for this Contractor.")
+@router.post("/contractors/{contractor_id}/contacts", response_model=contacts.Contact, summary="Create a new Contact for this Contractor.")
 def create_contact(contractor_id: int, contact: contacts.BaseContact, db=Depends(get_db)):
     return crud_contacts.create_contact(db=db, contractor_id=contractor_id, contact=contact)
 
