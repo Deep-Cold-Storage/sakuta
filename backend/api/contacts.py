@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from ..database import get_db
 
 from .. import models
-from ..crud import crud_contacts
+from ..crud import crud_contacts, crud_relations
 from ..schemas import contacts
 
 router = APIRouter()
@@ -52,3 +52,31 @@ def delete_contact(contact_id: int, db=Depends(get_db)):
     crud_contacts.delete_contact(db=db, contact_id=contact_id)
 
     return Response(status_code=204)
+
+
+# New Solution
+# Create contact with relation.
+
+@router.get("/branches/{branch_id}/contacts", response_model=List[contacts.Contact],  summary="Get all Contacts for Branch by Branch ID.")
+def get_contact_by_branch(branch_id: int, db=Depends(get_db)):
+
+    relations = crud_relations.get_relations(db=db, branch_id=branch_id)
+    contacts = []
+
+    for item in relations:
+        contact = crud_contacts.get_contact(db=db, contact_id=item.contact_id)
+        contacts.append(contact)
+
+    return contacts
+
+
+@router.post("/contractors/{contractor_id}/branches/{branch_id}/contacts", response_model=contacts.Contact, summary="Create a new Contact and Relation with this Branch.")
+def create_contact_by_branch(contractor_id: int, branch_id: int, contact: contacts.BaseContact, db=Depends(get_db)):
+    contact = crud_contacts.create_contact(db=db, contractor_id=contractor_id, contact=contact)
+
+    try:
+        relation = crud_relations.create_relation_ids(db=db, contact_id=contact.contact_id, branch_id=branch_id)
+    except:
+        return Response(status_code=400)
+
+    return contact
