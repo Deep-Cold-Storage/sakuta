@@ -225,7 +225,6 @@
           },
           { text: "E-Mail", value: "email" },
           { text: "Phone", value: "phone" },
-          { text: "Description", value: "destription" },
         ],
       };
     },
@@ -290,8 +289,20 @@
           .substring(0, 2);
       },
 
+      handleBranchTableClick(row) {
+        this.$router.push("/branches/" + row.branch_id);
+      },
+
       handleContactTableClick(row) {
         this.$router.push("/contacts/" + row.contact_id);
+      },
+
+      addBranch() {
+        this.$router.push("/customers/" + this.customerId + "/branches");
+      },
+
+      addContact() {
+        this.$router.push("/customers/" + this.customerId + "/contacts");
       },
     },
     created() {

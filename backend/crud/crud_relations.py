@@ -54,3 +54,15 @@ def delete_relation(db: Session, relation_id: int):
 
     db.delete(db_relation)
     db.commit()
+
+
+def delete_relation_ids(db: Session, branch_id: int, contact_id: int):
+    db_relation = db.query(models.Relation).filter(
+        models.Relation.branch_id == branch_id).filter(
+        models.Relation.contact_id == contact_id).first()
+
+    if not db_relation:
+        return
+
+    db.delete(db_relation)
+    db.commit()

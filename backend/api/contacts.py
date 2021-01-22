@@ -80,3 +80,23 @@ def create_contact_by_branch(contractor_id: int, branch_id: int, contact: contac
         return Response(status_code=400)
 
     return contact
+
+
+@router.post("/branches/{branch_id}/contacts/{contact_id}", summary="Create a relationship between existing contact and this Branch.")
+def assign_contact_by_branch(branch_id: int, contact_id: int, db=Depends(get_db)):
+    try:
+        relation = crud_relations.create_relation_ids(db=db, contact_id=contact_id, branch_id=branch_id)
+    except:
+        return Response(status_code=400)
+
+    return Response(status_code=204)
+
+
+@router.delete("/branches/{branch_id}/contacts/{contact_id}", summary="Delete a relationship between existing contact and this Branch.")
+def assign_contact_by_branch(branch_id: int, contact_id: int, db=Depends(get_db)):
+    try:
+        relation = crud_relations.delete_relation_ids(db=db, contact_id=contact_id, branch_id=branch_id)
+    except:
+        return Response(status_code=400)
+
+    return Response(status_code=204)
