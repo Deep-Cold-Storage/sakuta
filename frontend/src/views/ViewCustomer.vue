@@ -197,7 +197,17 @@
     data() {
       return {
         customerId: "",
-        customer: {},
+        customer: {
+          name: null,
+          industry: null,
+          pesel: null,
+          regon: null,
+          nip: null,
+          bank_account: null,
+          bank_name: null,
+          website: null,
+          description: null,
+        },
 
         branches: [],
         isBranchesLoading: true,
