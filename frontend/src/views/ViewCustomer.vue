@@ -290,13 +290,17 @@
       },
 
       getCustomerInitials(name) {
-        return name
-          .split(" ")
-          .map(function(item) {
-            return item[0];
-          })
-          .join("")
-          .substring(0, 2);
+        try {
+          return name
+            .split(" ")
+            .map(function(item) {
+              return item[0];
+            })
+            .join("")
+            .substring(0, 2);
+        } catch (error) {
+          return "XD";
+        }
       },
 
       handleBranchTableClick(row) {

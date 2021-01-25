@@ -20,7 +20,7 @@
   // View Transition Animations
   .fade-enter-active,
   .fade-leave-active {
-    transition-duration: 0.05s;
+    transition-duration: 0.07s;
     transition-property: opacity;
     transition-timing-function: ease-in-out;
   }
