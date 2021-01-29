@@ -2,18 +2,18 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Dashboard from '../views/Dashboard.vue'
-import CreateCustomer from '../views/CreateCustomer.vue'
-import ViewCustomer from '../views/ViewCustomer.vue'
-import EditCustomer from '../views/EditCustomer.vue'
+import CreateCustomer from '../views/Customer/CreateCustomer.vue'
+import ViewCustomer from '../views/Customer/ViewCustomer.vue'
+import EditCustomer from '../views/Customer/EditCustomer.vue'
 
-import ViewContact from '../views/ViewContact.vue'
-import CreateContact from '../views/CreateContact.vue'
-import EditContact from '../views/EditContact.vue'
+import ViewContact from '../views/Contact/ViewContact.vue'
+import CreateContact from '../views/Contact/CreateContact.vue'
+import EditContact from '../views/Contact/EditContact.vue'
 
-import ViewBranch from '../views/ViewBranch.vue'
-import CreateBranch from '../views/CreateBranch.vue'
-import EditBranch from '../views/EditBranch.vue'
-import AssignContact from '../views/AssignContact.vue'
+import ViewBranch from '../views/Branch/ViewBranch.vue'
+import CreateBranch from '../views/Branch/CreateBranch.vue'
+import EditBranch from '../views/Branch/EditBranch.vue'
+import AssignContact from '../views/Branch/AssignContact.vue'
 
 
 
