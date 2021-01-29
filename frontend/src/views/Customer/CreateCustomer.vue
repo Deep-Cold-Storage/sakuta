@@ -34,11 +34,15 @@
                 <h4 class="ma-2">Basic Information</h4>
                 <p class="ma-2 grey--text" v-show="$vuetify.breakpoint.mdAndUp">(Optional) - Information such as name and NIP.</p>
                 <v-divider></v-divider>
-                <v-text-field class="ma-2" flat hide-details label="Customer Name" outlined v-model="customer.name"></v-text-field>
+                <v-text-field class="ma-2" flat hide-details label="Customer Name" data-cy="name" outlined v-model="customer.name"></v-text-field>
 
                 <v-row dense>
-                  <v-col xs="12" sm="12" md="12" lg="6"><v-text-field class="ma-2" flat hide-details label="Industry" outlined v-model="customer.industry"></v-text-field></v-col>
-                  <v-col xs="12" sm="12" md="12" lg="6"><v-text-field class="ma-2" flat hide-details label="NIP" outlined v-model="customer.nip"></v-text-field></v-col>
+                  <v-col xs="12" sm="12" md="12" lg="6"
+                    ><v-text-field class="ma-2" flat hide-details label="Industry" outlined data-cy="industry" v-model="customer.industry"></v-text-field
+                  ></v-col>
+                  <v-col xs="12" sm="12" md="12" lg="6"
+                    ><v-text-field class="ma-2" flat hide-details label="NIP" outlined data-cy="nip" v-model="customer.nip"></v-text-field
+                  ></v-col>
                 </v-row>
 
                 <br />
