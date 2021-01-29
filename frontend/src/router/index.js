@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Dashboard from '../views/Dashboard.vue'
+import NotFound from '../views/NotFound.vue'
+
 import CreateCustomer from '../views/Customer/CreateCustomer.vue'
 import ViewCustomer from '../views/Customer/ViewCustomer.vue'
 import EditCustomer from '../views/Customer/EditCustomer.vue'
@@ -74,6 +76,11 @@ const routes = [
     path: '/branches/:branchId/contacts',
     name: 'Assign Contact',
     component: AssignContact
+  },
+  {
+    path: '*',
+    name: 'Not Found',
+    component: NotFound
   },
 ]
 
