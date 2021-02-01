@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from fastapi import Depends, APIRouter, Response
 from sqlalchemy.orm import Session
@@ -12,7 +12,11 @@ router = APIRouter()
 
 
 @router.get("/contractors", response_model=List[contractors.Contractor], summary="Get all saved Contractors.")
-def get_contractors(db=Depends(get_db)):
+def get_contractors(db=Depends(get_db), contractor_nip: Optional[str] = None):
+
+    if contractor_nip:
+        return crud_contractors.search_contractors_nip(db, contractor_nip)
+
     return crud_contractors.get_contractors(db)
 
 

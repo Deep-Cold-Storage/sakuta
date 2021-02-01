@@ -8,8 +8,16 @@ def get_contractors(db: Session):
     return db.query(models.Contractor).all()
 
 
+def get_contractorsNIP(db: Session):
+    return db.query(models.Contractor).all()
+
+
 def get_contractor(db: Session, contractor_id: int):
     return db.query(models.Contractor).filter(models.Contractor.contractor_id == contractor_id).first()
+
+
+def search_contractors_nip(db: Session, contractor_nip: str):
+    return db.query(models.Contractor).filter(models.Contractor.nip == contractor_nip).all()
 
 
 def create_contractor(db: Session, contractor: contractors.Contractor):
