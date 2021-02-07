@@ -2,22 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Dashboard from '../views/Dashboard.vue'
-import NotFound from '../views/NotFound.vue'
-
-import CreateCustomer from '../views/Customer/CreateCustomer.vue'
-import ViewCustomer from '../views/Customer/ViewCustomer.vue'
-import EditCustomer from '../views/Customer/EditCustomer.vue'
-
-import ViewContact from '../views/Contact/ViewContact.vue'
-import CreateContact from '../views/Contact/CreateContact.vue'
-import EditContact from '../views/Contact/EditContact.vue'
-
-import ViewBranch from '../views/Branch/ViewBranch.vue'
-import CreateBranch from '../views/Branch/CreateBranch.vue'
-import EditBranch from '../views/Branch/EditBranch.vue'
-import AssignContact from '../views/Branch/AssignContact.vue'
-
-
 
 Vue.use(VueRouter)
 
@@ -30,57 +14,57 @@ const routes = [
   {
     path: '/customers/create',
     name: 'Create Customers',
-    component: CreateCustomer
+    component: () => import(/* webpackChunkName: "create-customer" */ '../views/Customer/CreateCustomer.vue')
   },
   {
     path: '/customers/:customerId',
     name: 'View Customer',
-    component: ViewCustomer
+    component: () => import(/* webpackChunkName: "view-customer" */ '../views/Customer/ViewCustomer.vue')
   },
   {
     path: '/customers/:customerId/edit',
     name: 'Edit Customer',
-    component: EditCustomer
+    component: () => import(/* webpackChunkName: "edit-customer" */ '../views/Customer/EditCustomer.vue')
   },
   {
     path: '/customers/:customerId/contacts',
     name: 'Create Contact',
-    component: CreateContact
-  },
-  {
-    path: '/contacts/:contactId',
-    name: 'View Contact',
-    component: ViewContact
-  },
-  {
-    path: '/contacts/:contactId/edit',
-    name: 'Edit Contact',
-    component: EditContact
-  },
-  {
-    path: '/branches/:branchId',
-    name: 'View Branch',
-    component: ViewBranch
+    component: () => import(/* webpackChunkName: "create-contact" */ '../views/Contact/CreateContact.vue')
   },
   {
     path: '/customers/:customerId/branches',
     name: 'Create Branch',
-    component: CreateBranch
+    component: () => import(/* webpackChunkName: "create-branch" */ '../views/Branch/CreateBranch.vue')
   },
   {
-    path: '/branches/:branchId/edit',
-    name: 'Edit Branch',
-    component: EditBranch
+    path: '/contacts/:contactId',
+    name: 'View Contact',
+    component: () => import(/* webpackChunkName: "view-contact" */ '../views/Contact/ViewContact.vue')
+  },
+  {
+    path: '/contacts/:contactId/edit',
+    name: 'Edit Contact',
+    component: () => import(/* webpackChunkName: "edit-contact" */ '../views/Contact/EditContact.vue')
   },
   {
     path: '/branches/:branchId/contacts',
     name: 'Assign Contact',
-    component: AssignContact
+    component: () => import(/* webpackChunkName: "assign-contact" */ '../views/Branch/AssignContact.vue')
+  },
+  {
+    path: '/branches/:branchId',
+    name: 'View Branch',
+    component: () => import(/* webpackChunkName: "view-branch" */ '../views/Branch/ViewBranch.vue')
+  },
+  {
+    path: '/branches/:branchId/edit',
+    name: 'Edit Branch',
+    component: () => import(/* webpackChunkName: "edit-branch" */ '../views/Branch/EditBranch.vue')
   },
   {
     path: '*',
     name: 'Not Found',
-    component: NotFound
+    component: () => import(/* webpackChunkName: "not-found" */ '../views/NotFound.vue')
   },
 ]
 
