@@ -1,3 +1,4 @@
+import sentry_sdk
 from fastapi import FastAPI
 from fastapi.openapi.utils import get_openapi
 
@@ -7,6 +8,10 @@ from .api import contractors, branches, contacts, relations
 
 models.Base.metadata.create_all(bind=engine)
 
+sentry_sdk.init(
+    "https://31fdd0a4edc549279455489370272db3@o352799.ingest.sentry.io/5626762",
+    traces_sample_rate=1.0
+)
 
 tags_metadata = [
     {
