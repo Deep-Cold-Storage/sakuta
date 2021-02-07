@@ -103,7 +103,7 @@
     name: "Dashboard",
     data() {
       return {
-        customers: [],
+        customers: [{ industry: "", nip: "", website: "" }],
         search: "",
         isLoading: true,
 
