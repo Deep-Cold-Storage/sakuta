@@ -56,3 +56,13 @@ def delete_contractor(contractor_id: int, db=Depends(get_db)):
     crud_contractors.delete_contractor(db=db, contractor_id=contractor_id)
 
     return Response(status_code=204)
+
+
+# Healthcheck
+@router.get("/health", summary="Microservice Healthcheck", include_in_schema=False)
+def get_health(db=Depends(get_db)):
+    try:
+        crud_contractors.get_contractor(db=db, contractor_id=1)
+        return Response(status_code=200)
+    except:
+        return Response(status_code=502)
