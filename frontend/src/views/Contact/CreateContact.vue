@@ -34,10 +34,12 @@
                 <h4 class="ma-2">Basic Information</h4>
                 <p class="ma-2 grey--text" v-show="$vuetify.breakpoint.mdAndUp">(Optional) - Information such as name and contact information.</p>
                 <v-divider></v-divider>
-                <v-text-field class="ma-2" flat hide-details label="Name" outlined v-model="contact.name"></v-text-field>
+                <v-text-field class="ma-2" flat hide-details label="Name" outlined v-model="contact.name" data-cy="name"></v-text-field>
 
                 <v-row dense>
-                  <v-col xs="12" sm="12" md="12" lg="6"><v-text-field class="ma-2" flat hide-details label="E-Mail" outlined v-model="contact.email"></v-text-field></v-col>
+                  <v-col xs="12" sm="12" md="12" lg="6"
+                    ><v-text-field class="ma-2" flat hide-details label="E-Mail" outlined v-model="contact.email" data-cy="email"></v-text-field
+                  ></v-col>
                   <v-col xs="12" sm="12" md="12" lg="6"><v-text-field class="ma-2" flat hide-details label="Phone" outlined v-model="contact.phone"></v-text-field></v-col>
                 </v-row>
 

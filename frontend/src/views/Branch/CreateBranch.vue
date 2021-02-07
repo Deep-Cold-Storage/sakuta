@@ -34,18 +34,24 @@
                 <h4 class="ma-2">Basic Information</h4>
                 <p class="ma-2 grey--text" v-show="$vuetify.breakpoint.mdAndUp">(Optional) - Information such as name and address information.</p>
                 <v-divider></v-divider>
-                <v-text-field class="ma-2" flat hide-details label="Name" outlined v-model="branch.name"></v-text-field>
+                <v-text-field class="ma-2" flat hide-details label="Name" outlined v-model="branch.name" data-cy="name"></v-text-field>
 
                 <v-row dense>
-                  <v-col xs="12" sm="12" md="12" lg="6"><v-text-field class="ma-2" flat hide-details label="Address" outlined v-model="branch.address"></v-text-field></v-col>
-                  <v-col xs="12" sm="12" md="12" lg="6"><v-text-field class="ma-2" flat hide-details label="City" outlined v-model="branch.city"></v-text-field></v-col>
+                  <v-col xs="12" sm="12" md="12" lg="6"
+                    ><v-text-field class="ma-2" flat hide-details label="Address" outlined v-model="branch.address" data-cy="address"></v-text-field
+                  ></v-col>
+                  <v-col xs="12" sm="12" md="12" lg="6"
+                    ><v-text-field class="ma-2" flat hide-details label="City" outlined v-model="branch.city" data-cy="city"></v-text-field
+                  ></v-col>
                 </v-row>
 
                 <v-row dense>
                   <v-col xs="12" sm="12" md="12" lg="6"
-                    ><v-text-field class="ma-2" flat hide-details label="Postal Code" outlined v-model="branch.postal_code"></v-text-field
+                    ><v-text-field class="ma-2" flat hide-details label="Postal Code" outlined v-model="branch.postal_code" data-cy="postal_code"></v-text-field
                   ></v-col>
-                  <v-col xs="12" sm="12" md="12" lg="6"><v-text-field class="ma-2" flat hide-details label="Country" outlined v-model="branch.country"></v-text-field></v-col>
+                  <v-col xs="12" sm="12" md="12" lg="6"
+                    ><v-text-field class="ma-2" flat hide-details label="Country" outlined v-model="branch.country" data-cy="country"></v-text-field
+                  ></v-col>
                 </v-row>
               </v-container>
             </v-sheet>
