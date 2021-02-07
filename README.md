@@ -2,7 +2,8 @@
   <h3 align="center">Sakuta</h3>
   <p align="center">Contractor management module built for a university assignment.</p>
 </p>
-***
+
+---
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
@@ -11,6 +12,8 @@ Source code of **Sakuta**, contractor management module built for a university a
 > 🔥 Sakuta was built as an assignment for my university course.
 
 > 👑 It's alive! Check it out live at [sakuta.bednarski.dev](https://sakuta.bednarski.dev/)!
+
+<br>
 
 ## 🛠 Best Features
 
@@ -35,7 +38,8 @@ Below are the most important features.
 - Monitoring `/health` endpoint with microservice status.
 
 - Fully **Dockerized** development and deploy workflow.
-  <br>
+
+<br>
 
 ### Frontend Specific
 
@@ -63,7 +67,7 @@ This project uses **Docker** as a development and production deployment tool, so
   docker run -e DATABASE_URL="" -p 8000:8000 rangerdigital/sakuta:latest
   ```
 
-This will spin up Sakuta and expose service **API** at `http://127.0.0.1:5000`.
+This will spin up Sakuta and expose service **API** at `http://127.0.0.1:8000`.
 
 <br>
 
