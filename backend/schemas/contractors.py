@@ -31,3 +31,29 @@ class Contractor(BaseContractor):
 
     class Config:
         orm_mode = True
+
+
+class BaseIntegrationContractor(BaseModel):
+    name: Optional[str]
+    nip: Optional[str]
+    email: Optional[str]
+    address: Optional[str]
+    phone: Optional[str]
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "name": "Mickiewicz Inc.",
+                "nip": "6690506570",
+                "email": "mickiewiczowny@gmail.com",
+                "address": "Aleja Wlaclawa Kopisto",
+                "phone": "+48885558084"
+            }
+        }
+
+
+class IntegrationContractor(BaseIntegrationContractor):
+    contractor_id: int
+
+    class Config:
+        orm_mode = True

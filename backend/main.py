@@ -5,7 +5,7 @@ from fastapi.openapi.utils import get_openapi
 
 from . import models
 from .database import engine
-from .api import contractors, branches, contacts, relations
+from .api import contractors, branches, contacts, relations, integration
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -43,6 +43,7 @@ app.include_router(contractors.router, tags=["Contractors"])
 app.include_router(branches.router, tags=["Branches"])
 app.include_router(contacts.router, tags=["Contacts"])
 app.include_router(relations.router, tags=["Relations"])
+app.include_router(integration.router, tags=["Integration"])
 
 
 def custom_openapi():
