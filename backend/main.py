@@ -35,7 +35,7 @@ tags_metadata = [
 
 app = FastAPI(root_path=os.getenv("ROOT_PATH"), servers=[
     {"url": "http://127.0.0.1:5000", "description": "Development Environment"},
-    {"url": "https://sakuta.bednarski.dev", "description": "Production Environment"},
+    {"url": "https://sakuta.bednarski.dev", "description": "Production Environment"}
 ])
 
 
