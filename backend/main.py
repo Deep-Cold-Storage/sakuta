@@ -1,3 +1,4 @@
+import os
 import sentry_sdk
 from fastapi import FastAPI
 from fastapi.openapi.utils import get_openapi
@@ -32,7 +33,7 @@ tags_metadata = [
     }
 ]
 
-app = FastAPI()
+app = FastAPI(root_path=os.getenv("ROOT_PATH"))
 
 
 app.include_router(contractors.router, tags=["Contractors"])
@@ -47,7 +48,8 @@ def custom_openapi():
         version="0.5.1",
         description="This page contacts the latest auto-generated OpenAPI specification for our contractor management module. 🔥 Enjoy the power of Python FastAPI!",
         routes=app.routes,
-        tags=tags_metadata
+        tags=tags_metadata,
+
     )
 
     app.openapi_schema = openapi_schema
