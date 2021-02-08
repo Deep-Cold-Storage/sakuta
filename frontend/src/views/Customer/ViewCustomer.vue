@@ -99,6 +99,26 @@
                     >
                   </v-row>
                 </template>
+
+                <template v-if="invoices">
+                  <p class="ma-2 grey--text">Invoices Information</p>
+                  <v-divider></v-divider>
+
+                  <v-row>
+                    <v-col xs="12" sm="12" md="12" lg="11" class="ma-2"
+                      ><h4>All Invoices </h4> <p> {{ invoicesTotal }} Invoices</p></v-col
+                    >
+                  </v-row>
+
+                  <v-row>
+                    <v-col xs="12" sm="12" md="12" lg="5" class="ma-2"
+                      ><h4>Paid Balance</h4> <p> {{ balancePaid }} PLN</p></v-col
+                    >
+                    <v-col xs="12" sm="12" md="12" lg="5" class="ma-2"
+                      ><h4>Not Paid Balance </h4> <p> {{ balanceNotPaid }} PLN</p></v-col
+                    >
+                  </v-row>
+                </template>
               </v-container>
             </v-sheet>
           </v-col>
@@ -241,6 +261,8 @@
           { text: "E-Mail", value: "email" },
           { text: "Phone", value: "phone" },
         ],
+
+        invoices: [],
       };
     },
     methods: {
@@ -275,6 +297,19 @@
           .then((response) => {
             this.contacts = response.data;
             this.isContactsLoading = false;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      },
+
+      getInvoices() {
+        this.$http
+          // .get("https://not.real/api/" + this.nip + "/invoices")
+          .get("https://run.mocky.io/v3/a778459c-f972-4fc3-b824-209887783f96")
+
+          .then((response) => {
+            this.invoices = response.data;
           })
           .catch((error) => {
             console.log(error);
@@ -332,6 +367,35 @@
       this.getCustomer();
       this.getBranches();
       this.getContacts();
+      this.getInvoices();
+    },
+    computed: {
+      balancePaid: function() {
+        let paid = 0;
+
+        this.invoices.forEach((invoice) => {
+          if (invoice.paid) {
+            paid += invoice.balance;
+          }
+        });
+
+        return paid;
+      },
+
+      balanceNotPaid: function() {
+        let notPaid = 0;
+
+        this.invoices.forEach((invoice) => {
+          if (!invoice.paid) {
+            notPaid += invoice.balance;
+          }
+        });
+        return notPaid;
+      },
+
+      invoicesTotal: function() {
+        return this.invoices.length;
+      },
     },
   };
 </script>
