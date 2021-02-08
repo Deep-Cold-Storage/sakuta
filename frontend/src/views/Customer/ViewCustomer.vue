@@ -306,7 +306,7 @@
       getInvoices() {
         this.$http
           // .get("https://not.real/api/" + this.nip + "/invoices")
-          .get("https://run.mocky.io/v3/a778459c-f972-4fc3-b824-209887783f96")
+          .get("https://run.mocky.io/v3/900a9c1f-dc40-49e7-bc8e-de0431e15a14")
 
           .then((response) => {
             this.invoices = response.data;
@@ -374,7 +374,7 @@
         let paid = 0;
 
         this.invoices.forEach((invoice) => {
-          if (invoice.paid) {
+          if (invoice.paid_status) {
             paid += invoice.balance;
           }
         });
@@ -386,7 +386,7 @@
         let notPaid = 0;
 
         this.invoices.forEach((invoice) => {
-          if (!invoice.paid) {
+          if (!invoice.paid_status) {
             notPaid += invoice.balance;
           }
         });
