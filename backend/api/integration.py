@@ -12,8 +12,8 @@ router = APIRouter()
 
 
 @router.get("/integration", response_model=contractors.IntegrationContractor, summary="Get Contractor summary by NIP")
-def get_integration(contractor_nip: str, db=Depends(get_db)):
-    contractor = crud_contractors.search_contractors_nip(db, contractor_nip)
+def get_integration(nip: str, db=Depends(get_db)):
+    contractor = crud_contractors.search_contractors_nip(db, nip)
     if not contractor:
         return Response(status_code=404)
 
