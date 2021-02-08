@@ -119,6 +119,11 @@
                     <v-list-item-icon><v-icon>mdi-account-cancel-outline</v-icon></v-list-item-icon>
                     <v-list-item-content><v-list-item-title>Delete Customer</v-list-item-title></v-list-item-content>
                   </v-list-item>
+
+                  <v-list-item @click="deleteCustomer">
+                    <v-list-item-icon><v-icon>mdi-file-table</v-icon></v-list-item-icon>
+                    <v-list-item-content><v-list-item-title>View Invoices</v-list-item-title></v-list-item-content>
+                  </v-list-item>
                 </v-list-item-group>
               </v-list>
             </v-sheet>
