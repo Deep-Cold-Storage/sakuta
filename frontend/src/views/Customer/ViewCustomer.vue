@@ -104,6 +104,8 @@
                   <p class="ma-2 grey--text">Invoices Information</p>
                   <v-divider></v-divider>
 
+                  <v-date-picker v-model="invoicesRange" range no-title></v-date-picker>
+
                   <v-row>
                     <v-col xs="12" sm="12" md="12" lg="11" class="ma-2"
                       ><h4>All Invoices </h4> <p> {{ invoicesTotal }} Invoices</p></v-col
@@ -263,6 +265,7 @@
         ],
 
         invoices: [],
+        invoicesRange: [],
       };
     },
     methods: {
@@ -305,8 +308,8 @@
 
       getInvoices() {
         this.$http
-          // .get("https://not.real/api/" + this.nip + "/invoices")
-          .get("https://run.mocky.io/v3/900a9c1f-dc40-49e7-bc8e-de0431e15a14")
+          // .get("https://not.real/api/" + this.nip + "/invoices", { params: { start: this.invoicesRange[0], stop: this.invoicesRange[1] })
+          .get("https://run.mocky.io/v3/900a9c1f-dc40-49e7-bc8e-de0431e15a14", { params: { start: this.invoicesRange[0], stop: this.invoicesRange[1] } })
 
           .then((response) => {
             this.invoices = response.data;
@@ -395,6 +398,14 @@
 
       invoicesTotal: function() {
         return this.invoices.length;
+      },
+    },
+    watch: {
+      invoicesRange: {
+        handler() {
+          this.getInvoices();
+        },
+        deep: true,
       },
     },
   };
